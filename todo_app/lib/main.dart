@@ -1,0 +1,228 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:todo_app/constants/color.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+List<String> todo = ["Study Lessons", "Run", "Go to party"];
+
+class _MyAppState extends State<MyApp> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    double deviceHeight =
+        MediaQuery.of(context).size.height; //telefon yuksekligi
+    double deviceWidth = MediaQuery.of(context).size.width; // genisligi
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SafeArea(
+        child: Scaffold(
+          backgroundColor: HexColor(backgroundColor),
+          body: Column(
+            children: [
+              //Appbar kısmı
+              Container(
+                // appbar kısmı
+                width: deviceWidth,
+                height: deviceHeight / 4,
+                color: Colors.deepPurpleAccent,
+                child: const Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Text("Temmuz-2024",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 40),
+                      child: Text("My Todo List",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ],
+                ),
+              ),
+
+              //ilk colon
+              Expanded(
+                // ekranı kaplayan widget
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: SingleChildScrollView(
+                    child: ListView.builder(primary: false,
+                      shrinkWrap: true,
+                      itemCount: todo.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
+                          child: Padding(padding: const EdgeInsets.all(20),
+                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const Icon(
+                                    Icons.notes_outlined,
+                                    size: 50,
+                                ),
+                                Text(
+                                  todo[index],
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 21,),
+                                ),
+                                Checkbox(
+                                    value: isChecked,
+                                    onChanged: (val) => {
+                                          setState(() {
+                                            isChecked =
+                                                val!; //valvarsa!islemesok
+                                          })
+                                        }),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+
+              //ara yazı
+              const Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Completed",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
+              ),
+              //ikinci kolon
+              Expanded(
+                // ekranı kaplayan widget
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const Icon(Icons.notes_outlined, size: 50),
+                                const Text(
+                                  "Study Lessons",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 21,
+                                  ),
+                                ),
+                                Checkbox(
+                                    value: isChecked,
+                                    onChanged: (val) => {
+                                          setState(() {
+                                            isChecked =
+                                                val!; // val varsa ! isleme sok
+                                          })
+                                        }),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const Icon(Icons.notes_outlined, size: 50),
+                                const Text(
+                                  "Study Lessons",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 21,
+                                  ),
+                                ),
+                                Checkbox(
+                                    value: isChecked,
+                                    onChanged: (val) => {
+                                          setState(() {
+                                            isChecked =
+                                                val!; // val varsa ! isleme sok
+                                          })
+                                        }),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const Icon(Icons.notes_outlined, size: 50),
+                                const Text(
+                                  "Study Lessons",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 21,
+                                  ),
+                                ),
+                                Checkbox(
+                                    value: isChecked,
+                                    onChanged: (val) => {
+                                          setState(() {
+                                            isChecked =
+                                                val!; // val varsa ! isleme sok
+                                          })
+                                        }),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {}, child: const Text("Add New Task"))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
